@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .up{
+            width:0;
+            height:0;
+            border-width:5px;
+            border-style:solid;
+            border-color:transparent transparent black transparent;
+            display:inline-block;
+        }
+        .down{
+            width:0;
+            height:0;
+            border-width:5px;
+            border-style:solid;
+            border-color:black transparent transparent  transparent;
+            display:inline-block;
+            margin-top:13px;
+            position:absolute;
+        }
+    </style>
+</head>
+<body>
+<button id="btn"><span id="txt">隐藏</span><div class="down" id="toggle"></div></button><br>
+<img src="2.jpg">
+<script>
+    /*元素的显示和隐藏：第三版
+    * 三元条件;
+    * 箭头：CSS实现
+    *
+    * */
+    var btn=document.querySelector("#btn");
+    var img=document.querySelector("img");
+    var toggle=document.querySelector("#toggle");
+    var txt=document.querySelector("#txt");
+    /*点击按钮*/
+   btn.addEventListener("click",function(){
+       img.style.display=img.style.display=="none"?"inline":"none";
+        //console.log(this.firstChild.innerText);
+       //this.firstChild.innerText=this.firstChild.innerText=="隐藏"?"显示":"隐藏";
+       txt.innerHTML=(txt.innerHTML=="隐藏"?"显示":"隐藏");
+       toggle.className=toggle.className=="down"?"up":"down";
+   })
+</script>
+</body>
+</html>

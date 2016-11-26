@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .sptolight{
+            background:lightyellow;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="username">
+<script>
+    var username=document.querySelector("#username");
+    username.addEventListener("focus",function(){
+        this.className="sptolight";
+    })
+    username.addEventListener("blur",function(){
+        this.className="";
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="text" id="pwd">
+<script>
+    var pwd=document.querySelector("#pwd");
+    pwd.addEventListener("keyup",function(){
+        if(this.value.length!=0){
+            console.log(this.value);
+            console.log(this.value.length);
+        }
+    })
+</script>
+</body>
+</html>

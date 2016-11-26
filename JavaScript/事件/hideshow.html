@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<button id="btn">按钮</button><br>
+<img src="2.jpg">
+<script>
+    /*元素的显示和隐藏：第一版
+    * 点击时，先判断元素的style的display属性
+    * 是否是none,如果是，就变为inline，
+    * 如果不是，就变为none;
+    *
+    * */
+    var btn=document.querySelector("#btn");
+    var img=document.querySelector("img");
+    /*点击按钮*/
+   btn.addEventListener("click",function(){
+       if(img.style.display=="none"){
+           img.style.display="inline"
+       }else{
+           img.style.display="none"
+       }
+   })
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        nav{
+            width:800px;
+            height:25px;
+            line-height:25px;
+            border:1px solid orange;
+            background:#eee;
+            margin:auto;
+        }
+        nav ul{
+            list-style: none;
+            margin:0;
+            padding:0;
+        }
+        nav ul li{
+            float:left;
+            width:25%;
+            text-align:center;
+        }
+        /*设置二级菜单的list*/
+        nav ul li ul li{
+            float:none;
+            width:100%;
+            border-bottom:1px solid #fff;
+        }
+        nav ul li.spotlight{
+            background:#ddd;
+        }
+        nav ul li ul{
+            display:none;
+        }
+        nav ul li ul.active{
+            display:block;
+            background:orange;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li>one
+            <ul>
+                <li>二级菜单</li>
+                <li>二级菜单</li>
+                <li>二级菜单</li>
+                <li>二级菜单</li>
+            </ul>
+        </li>
+        <li>one
+            <ul>
+                <li>二级菜单</li>
+                <li>二级菜单</li>
+                <li>二级菜单</li>
+                <li>二级菜单</li>
+            </ul>
+        </li>
+        <li>one
+            <ul>
+                <li>二级菜单</li>
+                <li>二级菜单</li>
+                <li>二级菜单</li>
+                <li>二级菜单</li>
+            </ul>
+        </li>
+        <li>one
+            <ul>
+                <li>二级菜单</li>
+                <li>二级菜单</li>
+                <li>二级菜单</li>
+                <li>二级菜单</li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<script>
+    var lis=document.querySelectorAll("nav>ul>li");
+    //console.log(lis.length);
+    for(var i=0;i<lis.length;i++){
+        lis[i].addEventListener("mouseover",function(){
+            for(var j=0;j<lis.length;j++){
+                lis[j].className="";
+                lis[j].querySelector("nav>ul>li>ul").className="";
+            }
+            this.className="spotlight";
+            this.querySelector("nav>ul>li>ul").className="active";
+        })
+    }
+</script>
+</body>
+</html>

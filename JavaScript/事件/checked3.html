@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="checkbox">
+<hr>
+<div class="male">
+    <input type="checkbox">one<br>
+    <input type="checkbox">two<br>
+    <input type="checkbox">three<br>
+    <input type="checkbox">four<br>
+    <input type="checkbox">five<br>
+    <input type="checkbox">six<br>
+    <input type="checkbox">seven<br>
+</div>
+<script>
+    var male=document.querySelector(".male");
+    var inputs=male.getElementsByTagName("input");
+    console.log(inputs.length);
+    var input=document.querySelector("input[type=checkbox]");
+    input.addEventListener("click",function(){
+        //console.log(input.checked);
+        for(var i=0;i<inputs.length;i++){
+            inputs[i].checked=this.checked;
+        }
+    })
+</script>
+</body>
+</html>

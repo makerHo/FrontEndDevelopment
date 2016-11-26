@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<button id="btn">隐藏</button><br>
+<img src="2.jpg">
+<script>
+    /*元素的显示和隐藏：第三版
+    * 三元条件;
+    *
+    *
+    * */
+    var btn=document.querySelector("#btn");
+    var img=document.querySelector("img");
+    /*点击按钮*/
+   btn.addEventListener("click",function(){
+       img.style.display=img.style.display=="none"?"inline":"none";
+        //console.log(this.innerHTML);
+       this.innerHTML=(this.innerHTML=="隐藏"?"显示":"隐藏");
+   })
+</script>
+</body>
+</html>

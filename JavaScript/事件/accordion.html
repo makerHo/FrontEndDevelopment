@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .accordion{
+            border:1px solid red;
+            width:450px;
+            padding:10px;
+        }
+        .accordion .panel ul{
+            border:1px solid green;
+            display:none;
+        }
+        .accordion .panel ul.active{
+            display:block;
+        }
+    </style>
+</head>
+<body>
+<div class="accordion">
+    <div class="panel">
+        <button>内容管理</button>
+        <ul class="active">
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+            <li>four</li>
+        </ul>
+    </div>
+    <div class="panel">
+        <button>会员管理</button>
+        <ul>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+            <li>four</li>
+        </ul>
+    </div>
+    <div class="panel">
+        <button>网站管理</button>
+        <ul>
+            <li>one</li>
+            <li>two</li>
+            <li>three</li>
+            <li>four</li>
+        </ul>
+    </div>
+</div>
+<script>
+    /*手风琴accordion*/
+    //获取所有的button
+    var btns=document.querySelectorAll(".accordion button");
+    //获取按钮后的所有的ul
+    var uls=document.querySelectorAll(".accordion button+ul");
+    //console.log(uls.length);
+    /*为所有的button添加鼠标放上事件*/
+    for(var i=0;i<btns.length;i++){
+        btns[i].index=i;
+        btns[i].addEventListener("mouseover",function(){
+            for(var j=0;j<btns.length;j++){
+                uls[j].className="";
+            }
+            //console.log(this);
+            uls[this.index].className="active";
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<select id="choice">
+    <option value="one">one</option>
+    <option value="two">two</option>
+</select>
+<script>
+    var choice=document.querySelector("#choice");
+    choice.addEventListener("change",function(){
+        alert(this.value);
+    })
+</script>
+</body>
+</html>

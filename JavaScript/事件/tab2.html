@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .tab{
+            border:1px solid green;
+            display:block;
+        }
+        .tab:after,.tab ul:after{
+            content:"";
+            display:block;
+            clear:both;
+        }
+        ul{
+            list-style:none;
+            margin:0;
+            padding:0;
+        }
+        ul li{
+            float:left;
+            width:100px;
+            height:20px;
+            border:1px solid red;
+            margin-left:5px;
+            text-align:center;
+            cursor: pointer;
+            background:green;
+            color:white;
+            position:relative;
+        }
+        .active{
+            background:orange;
+            top:5px;
+            z-index:10;
+            border:1px solid green;
+            border-bottom:0;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .tab div{
+            width:315px;
+            height:200px;
+            border:1px solid red;
+            margin-left:5px;
+            margin-top:2px;
+            background:#fff;
+            position:relative;
+            display:none;
+        }
+        .tab div.spotlight{
+            border:1px solid green;
+            z-index:1;
+            background:orange;
+            display:block;
+        }
+        body{
+            background:#eee;
+        }
+    </style>
+</head>
+<body>
+<span class="tab">
+    <ul>
+        <li class="active">one</li>
+        <li>two</li>
+        <li>three</li>
+    </ul>
+    <div class="spotlight">1</div>
+    <div>2</div>
+    <div>3</div>
+</span>
+<script>
+    var tab=document.querySelector(".tab");
+    /*通过循环为多个元素绑定单击事件*/
+    var lis=tab.getElementsByTagName("li");
+    var divs=tab.getElementsByTagName("div");
+    //console.log(lis.length);
+    /*通过循环把变量赋给元素的自定义属性*/
+    for(var i=0;i<lis.length;i++){
+        //console.log(i);
+        //index为li的自定义属性
+        lis[i].index=i;
+        //console.log(lis[i])
+        lis[i].addEventListener("mouseover",function(){
+            //清空所有的list的className的值;
+            //清空所有的img的className的值;
+            for(var j=0;j<lis.length;j++){
+                lis[j].className="";
+                divs[j].className="";
+            }
+            //console.log(this.index);
+            //再为当前的list添加active;
+            this.className="active";
+            //点击list，相应index的图片会显示
+            divs[this.index].className="spotlight";
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul{
+            list-style: none;
+        }
+        ul li{
+            background:green;
+            display:inline-block;
+            width:100px;
+            height:25px;
+            color:#fff;
+            text-align:center;
+            cursor: pointer;
+        }
+        img{
+            display:none;
+        }
+        .active{
+            background:orange;
+        }
+        .spotlight{
+            display:block;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li class="active">one</li>
+    <li >two</li>
+    <li >three</li>
+    <li >four</li>
+    <li >five</li>
+</ul>
+<hr>
+<img src="1.jpg" class="spotlight"><br>
+<img src="2.jpg"><br>
+<img src="3.gif"><br>
+<img src="4.jpg"><br>
+<img src="5.jpg"><br>
+<script>
+    /*通过循环为多个元素绑定单击事件*/
+    var lis=document.getElementsByTagName("li");
+    var imgs=document.getElementsByTagName("img");
+    //console.log(lis.length);
+    /*通过循环把变量赋给元素的自定义属性*/
+    for(var i=0;i<lis.length;i++){
+        //console.log(i);
+        //index为li的自定义属性
+        lis[i].index=i;
+        //console.log(lis[i])
+        lis[i].addEventListener("click",function(){
+            //清空所有的list的className的值;
+            //清空所有的img的className的值;
+            for(var j=0;j<lis.length;j++){
+                lis[j].className="";
+                imgs[j].className="";
+            }
+            //console.log(this.index);
+            //再为当前的list添加active;
+            this.className="active";
+            //点击list，相应index的图片会显示
+            imgs[this.index].className="spotlight";
+        })
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        img{
+            transition:all 2s ease 0.3s;
+            display:block;
+            width:150px;
+            height:150px;
+            position:absolute;
+        }
+        @keyframes move {
+            0%{
+               left:0;
+            }
+            100%{
+               left:750px;
+               width:0px;
+               height:0px;
+            }
+        }
+        .active{
+            animation: move 5s ease backwards;
+        }
+    </style>
+</head>
+<body>
+<img src="2.jpg" class="demo">
+<script>
+    var demo=document.querySelector(".demo");
+    demo.addEventListener("mouseover",function(){
+        this.className="active";
+        console.log(this);
+    });
+</script>
+</body>
+</html>

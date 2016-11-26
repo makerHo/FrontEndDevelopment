@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<select>
+    <option>淘宝</option>
+    <option>京东</option>
+</select>
+<hr>
+<div id="demo">首页</div><div id="aboutus">关于我们</div>
+<select id="changeVersion">
+    <option value="cn">中文</option>
+    <option value="en">英文</option>
+</select>
+<script>
+    var language={
+        cn:{
+            homepage:"首页",
+            aboutus:"关于我们"
+        },
+        en:{
+            homepage:"homepage",
+            aboutus:"AboutUs"
+        }
+    };
+    //alert(language.cn);
+    var changeVersion=document.querySelector("#changeVersion");
+    var demo=document.querySelector("#demo");
+    var aboutus=document.querySelector("#aboutus");
+    changeVersion.addEventListener("change",function(){
+        var key=this.value;
+        //alert(key)
+        demo.innerHTML=language[key].homepage;
+        aboutus.innerHTML=language[key].aboutus;
+        //console.log(language[key].homepage);
+    })
+</script>
+</body>
+</html>
