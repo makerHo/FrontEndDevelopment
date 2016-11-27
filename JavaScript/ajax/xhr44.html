@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="feedback"></div>
+<script>
+	var feedback=document.getElementById("feedback");
+    var xhr=new XMLHttpRequest();
+    //console.log(xhr.readyState);
+    xhr.open("post","data4.php");
+    feedback.innerHTML='<img src="loading.gif">';
+    //console.log(xhr.readyState);
+    xhr.send(null);
+    xhr.addEventListener("readystatechange",function(){
+        //console.log(xhr.readyState);
+        if(xhr.readyState==4){
+        	if(xhr.status==200){
+                //xhr.responseText接受php返回的数据
+        		feedback.innerHTML="";
+                console.log(typeof xhr.responseText);
+                console.log(xhr.responseText);
+                var str=eval(xhr.responseText);
+                console.log(str);
+                console.log(str[0].username);
+        	}
+        }
+    })
+    //console.dir(xhr);
+</script>
+</body>
+</html>

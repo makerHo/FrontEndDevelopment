@@ -1,0 +1,34 @@
+ajax:异步JavaScript+xml
+asynchronouse javascript xml
+ajax:html+css+js+php+mysql
+
+对象
+XMLHttpRequest();
+
+方法
+xhr.open(method,url);链接后台程序
+把ajax传的值以表单数据的形式传递
+xhr.setRequestHeader('Content-Type',"application/x-www-form-urlencoded);
+xhr.send(“username=tom&pwd=1223”);
+属性
+readyState:0,1,2,3,4,4是完成
+status:状态码200,
+responseText:从后台接受到的数据以字符串的形式返回。
+responseXML:从后台接受到的数据以XML的形式返回。
+事件
+readystatechange状态改变事件
+
+PHP 返回值要做json_encode()处理
+js：eval(xhr.responseText)
+
+
+元素.animate(frames,timing);
+实现元素的属性动画。
+frames每一帧，数组类型，元素是对象。
+timing：动画持续的时间。
+timing的参数
+duration：动画持续的时间，单位是毫秒。
+delay：动画停留的时间。
+iteration：循环，Infinity无限循环，可以是具体的数字。
+easing：动画的速度，ease-in：快进ease-out:快出。
+fill：动画结束后停留的位置。forwards最后一帧，backwards初始位置.

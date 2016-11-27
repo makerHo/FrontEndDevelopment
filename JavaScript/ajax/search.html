@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    div {
+        border: 1px solid orange;
+        margin: 100px;
+        text-align: center;
+    }
+
+    div input {
+        margin: 15px;
+        width: 350px;
+        height: 30px;
+        border: 1px solid red;
+    }
+
+    .searchList {
+        margin: 0;
+        border: 1px solid green;
+        width: 350px;
+        position: absolute;
+        left: 500px;
+        top: 150px;
+        background: #fff;
+        display: none;
+    }
+    .searchList ul{
+        list-style:none;
+        margin:0;
+        padding:0;
+        text-align:left;
+    }
+    .searchList ul li:hover{
+        background:#ddd;
+        cursor: pointer;
+    }
+</style>
+<div>
+    <input type="text" id="keywords">
+
+    <div class="searchList"></div>
+</div>
+<script>
+    var xhr = new XMLHttpRequest();
+    var searchList = document.querySelector(".searchList");
+    var keywords = document.querySelector("#keywords");
+    keywords.addEventListener("keyup", function () {
+        //输入不为空时
+        if (this.value.length != 0) {
+            //alert(this.value);
+            xhr.open("post", 'search.php');
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send("keywords=" + this.value);
+            xhr.addEventListener("readystatechange", function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        var str = eval(xhr.responseText);
+                        //console.log(str);
+                        //后台结果有值时
+                        if (str.length != 0) {
+                            //console.log("true");
+                            var container = "<ul>";
+                            for (i in str) {
+                                //\""+str[i].cname+"\"
+                                container += "<li onclick='assign(keywords,this)'>" + str[i].cname + "</li>";
+                            }
+                            container += "</ul>";
+                            searchList.style.display = "block";
+                            searchList.innerHTML = container;
+                        } else {
+                            searchList.innerHTML = "未找到结果";
+                        }
+                        //console.log(xhr.responseText);
+                    }
+                }
+            })
+            /*var lis=document.getElementsByTagName("li");
+            console.log(lis.length);
+            for (var i=0;i<lis.length;i++){
+                lis[i].addEventListener("click",function(){
+                    alert(333);
+                })
+            }*/
+            //输入为空时
+        }else{
+            searchList.style.display = "none";
+        }
+    })
+    function assign(a,b){
+        //alert(a);
+        a.value= b.innerHTML;
+        searchList.style.display = "none";
+    }
+</script>
+</body>
+</html>

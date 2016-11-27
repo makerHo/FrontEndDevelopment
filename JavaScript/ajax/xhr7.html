@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    #feedback{
+        border:1px solid orange;
+    }
+</style>
+<div id="feedback"></div>
+<input type="text" id="username"><br>
+<input type="password" id="pwd"><br>
+<button id="btn">传值</button>
+<script>
+	var feedback=document.getElementById("feedback");
+    var username=document.getElementById("username");
+    var pwd=document.getElementById("pwd");
+    var btn=document.getElementById("btn");
+    var xhr=new XMLHttpRequest();
+    btn.addEventListener("click",function(){
+        //console.log(xhr.readyState);
+        xhr.open("get","data7.php?username="+username.value+"&pwd="+pwd.value);
+        feedback.innerHTML='<img src="loading.gif">';
+        //setRequestHeader:设置请求的文件头;
+        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        //console.log(xhr.readyState);
+        //send("key=value&key=value")
+        xhr.send(null);
+        xhr.addEventListener("readystatechange",function(){
+            //console.log(xhr.readyState);
+            if(xhr.readyState==4){
+                if(xhr.status==200){
+                    //xhr.responseText接受php返回的数据
+                    console.log(xhr.responseText);
+                    feedback.innerHTML=xhr.responseText;
+                }
+            }
+        })
+    })
+
+    //console.dir(xhr);
+</script>
+</body>
+</html>

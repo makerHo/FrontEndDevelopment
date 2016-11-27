@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" id="uploadBar" multiple>
+<div id="feedback"></div>
+<script>
+    var feedback=document.querySelector("#feedback");
+    var uploadBar=document.querySelector("#uploadBar");
+    uploadBar.addEventListener("change",function(){
+        console.log(this.files.length);
+        for(var i=0;i<this.files.length;i++){
+            upload(this.files[i]);
+        }
+        //console.log(this.files[0].name);
+        //upload(this.files[0]);
+    })
+    //上传文件函数
+    function upload(_file){
+        var xhr=new XMLHttpRequest();
+        var fd=new FormData();
+        xhr.open("post","upload.php");
+        xhr.addEventListener("readystatechange",function(){
+            if(xhr.readyState==4){
+                if(xhr.status==200){
+                    //console.log(xhr.responseText);
+                    feedback.innerHTML=xhr.responseText;
+                }
+            }
+        })
+        fd.append("pic",_file);
+        fd.append("send","login");
+        xhr.send(fd);
+    }
+</script>
+</body>
+</html>

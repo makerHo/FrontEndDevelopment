@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    #loading{
+        display: none;
+    }
+</style>
+<img src="loading.gif" id="loading"><br>
+<input type="text" id="username">
+<script>
+    var username=document.querySelector("#username");
+    var loading=document.querySelector("#loading");
+    var xhr=new XMLHttpRequest();
+    username.addEventListener("blur",function(){
+        xhr.open("post","demo.php");
+        loading.style.display="block";
+        xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+        //input name="username"
+        xhr.send("username="+username.value);
+        xhr.addEventListener("readystatechange",function(){
+            if(xhr.readyState==4){
+                if(xhr.status==200){
+                    loading.style.display="none";
+                    console.log(xhr.responseText);
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

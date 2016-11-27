@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    h1{
+        border:1px solid red;
+    }
+    h1:after{
+        content:"morning";
+    }
+    p:before{
+        /*content:attr(url);*/
+        content:url(loading.gif);
+    }
+    .demo{
+        /*counter：计数器,increment自动增加*/
+        counter-increment: timer;
+    }
+    .demo:before{
+        content:counter(timer);
+    }
+</style>
+<h2 class="demo">标题</h2>
+<h2 class="demo">标题</h2>
+<h2 class="demo">标题</h2>
+<h2 class="demo">标题</h2>
+<h2 class="demo">标题</h2>
+<h2 class="demo">标题</h2>
+<p info="http://www.baidu.com">[学习进行时］十八届六中全会公
+    报对营造风清气正的党内政治生态
+    提出了全面要求，开创了党的建设
+    新格局和新境界。十八大以来，习
+    近平对全面从严治党有许多论述，
+    公报内容与之一脉相承。新华网《学习进行时》原创品牌栏目“讲习所”今天推出文章，领您一窥习近平的治党思路。</p>
+<h1>hello</h1>
+</body>
+</html>

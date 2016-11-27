@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            list-style:none;
+            margin:0;
+            padding:0;
+            /*border:1px solid green;*/
+        }
+        ul:after{
+            content:"";
+            display:block;
+            clear:both;
+        }
+        .tab ul li{
+            width:100px;
+            height:35px;
+            border:1px solid red;
+            float:left;
+            margin-left:2px;
+            cursor: pointer;
+        }
+        /*当前的list*/
+        .tab ul li.liActive{
+            position:relative;
+            background:#eee;
+            border:1px solid blue;
+            border-bottom:0;
+            z-index:10;
+            top:4px;
+        }
+        .divActive{
+            display:block;
+            width:310px;
+            height:300px;
+            border:1px solid blue;
+            background:#eee;
+            margin-top:2px;
+        }
+    </style>
+</head>
+<body>
+<span class="tab" id="tab">
+    <ul>
+        <li class="liActive">news</li>
+        <li>weather</li>
+        <li>forum</li>
+    </ul>
+    <div class="divActive" id="divActive">ddd</div>
+</span>
+<script>
+    var divActive=document.getElementById("divActive");
+    var lis=document.querySelector("#tab").getElementsByTagName("li");
+    //console.log(lis.length);
+    for(var i=0;i<lis.length;i++){
+        //为每一个list添加一个自定义属性index，并循环赋值;
+        lis[i].index=i;
+        //console.log(lis[i]);
+        //console.log(i);
+        lis[i].addEventListener("mouseover",function(){
+            //在为当前的list添加样式前，先清空所有的list的样式，
+            //然后再为当前的list添加样式;
+            for(var j=0;j<lis.length;j++){
+                lis[j].className="";
+            }
+            this.className="liActive";
+            //console.log(this.index);
+            switch (this.index){
+                case 0:
+                    //divActive.innerHTML=0;
+                    Ajax(divActive,"0.php");
+                    break;
+                case 1:
+                    //divActive.innerHTML=1;
+                    Ajax(divActive,"1.php");
+                    break;
+                case 2:
+                    //divActive.innerHTML=2;
+                    Ajax(divActive,"2.php");
+                    break;
+            }
+        })
+    }
+    Ajax(divActive,"0.php");
+    //封装了ajax，传元素和路径；
+    function Ajax(_element,_url){
+        var xhr=new XMLHttpRequest();
+        xhr.open("post",_url);
+        _element.innerHTML="加载中...";
+        xhr.send(null);
+        xhr.addEventListener("readystatechange",function(){
+            if(xhr.readyState==4){
+                if(xhr.status==200){
+                    _element.innerHTML=xhr.responseText;
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

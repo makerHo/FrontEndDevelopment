@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    #feedback{
+        border:1px solid orange;
+    }
+</style>
+<div id="feedback"></div>
+<script>
+	var feedback=document.getElementById("feedback");
+    var xhr=new XMLHttpRequest();
+    //console.log(xhr.readyState);
+    xhr.open("post","data5.php");
+    feedback.innerHTML='<img src="loading.gif">';
+    //setRequestHeader:设置请求的文件头;
+    xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    //console.log(xhr.readyState);
+    //
+    xhr.send("username=peter&pwd=654321");
+    xhr.addEventListener("readystatechange",function(){
+        //console.log(xhr.readyState);
+        if(xhr.readyState==4){
+        	if(xhr.status==200){
+                //xhr.responseText接受php返回的数据
+                console.log(xhr.responseText);
+                feedback.innerHTML=xhr.responseText;
+        	}
+        }
+    })
+    //console.dir(xhr);
+</script>
+</body>
+</html>

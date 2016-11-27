@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var xhr=new XMLHttpRequest();
+    console.log(xhr.readyState);
+    xhr.open("post","data.php");
+    console.log(xhr.readyState);
+    xhr.send(null);
+    xhr.addEventListener("readystatechange",function(){
+        console.log(xhr.readyState);
+    })
+    //console.dir(xhr);
+</script>
+</body>
+</html>
