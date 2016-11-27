@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    //var demo='{"username":"tom","gender":"male"}';
+    //console.log(JSON.parse(demo));
+    /*var d=new Date();
+    //console.log(d.getTime());
+    var member={"username":"tom",time:d.getTime()}
+    console.log(JSON.stringify(member));
+    console.log(typeof JSON.stringify(member));
+
+    localStorage.removeItem("content");*/
+    /*存储localStorage:key,value
+    * value存的数据中有当前时间戳
+    * */
+    function setValue(key,value){
+        //存储数据时的时间戳
+        var currentTime=new Date().getTime();
+        //console.log(currentTime);
+        //1479610362627
+        localStorage.setItem(key,JSON.stringify({'data':value,'currentTime':currentTime}))
+    }
+    //setValue("name","王五");
+    //console.log(localStorage);
+    //console.log(setValue("level","vip"));
+    //console.log(getValue("level",1));
+    //console.log(localStorage);
+    //setValue('username','张三');
+    /*获取localStorage的值
+    * expires终止日期,现在的时间戳
+    *
+    * */
+    //setValue("name","amanda");
+    var d=new Date();
+    //console.log(d.getTime())
+    //1000*60*60*24*7:一周
+    var expires=d.setTime(d.getTime()+1000*60*60*24*7);
+    //console.log(d.getTime());
+    //var expires=setDate()
+    console.log(getValue("name",expires));
+    function getValue(key,expires){
+        //根据key获取相应的value,"{key:value,key:value}"
+        var data=localStorage.getItem(key);
+        //把名值对的字符串解析为对象
+        var dataObj=JSON.parse(data);
+        if(dataObj){
+            /*判断当前的时间戳是否大于保存数据时的时间戳，并且小于终止日期的时间戳*/
+            if(new Date().getTime()>dataObj.currentTime&&new Date().getTime()<expires){
+                return JSON.stringify(dataObj.data);
+                //console.log("没有过期");
+            }else{
+                localStorage.removeItem(key);
+                return "过期";
+            }
+        }else{
+            return "数据为空";
+        }
+    }
+    //getValue('username');
+    //console.log(localStorage);
+</script>
+</body>
+</html>

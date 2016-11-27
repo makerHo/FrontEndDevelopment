@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul>
+    <li>姓名:<input type="text" id="name"></li>
+    <li>电话:<input type="text" id="phone"></li>
+    <li>地址:<input type="text" id="address"></li>
+</ul>
+<button id="add">添加</button>
+<button id="delete">删除</button><br>
+<div id="content"></div>
+<script>
+    var db;
+    var arrayKey=[];
+    var openRequest;
+    var lastCursor;
+    var content=document.querySelector("#content");
+    var indexedDB=window.indexedDB||
+            window.webkitIndexedDB||
+                    window.mozIndexedDB||
+                    window.msIndexedDB;
+    //console.log(indexedDB);
+    function init(){
+        //创建数据库
+        openRequest=indexedDB.open("foo",2);
+        /*版本更新:在数据库中创建表*/
+        openRequest.addEventListener('upgradeneeded',function(e){
+            /*当前的数据库*/
+            var thisDB= e.target.result;
+            //console.log(thisDB);
+            //当前的数据库中是否包含member表
+            if(!thisDB.objectStoreNames.contains("member")){
+                //在当前数据库中创建表
+                var objectStore=thisDB.createObjectStore("member",{keyPath:'id',autoIncrement:true});
+                objectStore.createIndex('name',"name",{unique:false});
+                //console.log(objectStore);
+            }
+        })
+        /*数据库创建成功, 相当于页面加载后*/
+        openRequest.addEventListener("success",function(evt){
+            //获取当前的数据库对象
+            db=evt.target.result;
+            //console.log("数据创建成功");
+            /*创建事务对象*/
+            var transaction=db.transaction(['member'],'readwrite');
+            /*创建表对象*/
+            var objectStore=transaction.objectStore("member");
+            /*游标对象创建成功*/
+            objectStore.openCursor().addEventListener('success',function(evt){
+                var cursor=evt.target.result;
+                //console.log(cursor);
+                //console.log(cursor.value[0].name);
+                var str='';
+                /*循环游标对象*/
+                if(cursor){
+                    str+=cursor.value[0]['name'];
+                    arrayKey.push(cursor.key);
+                    lastCursor=cursor.key;
+                    //游标对象继续查询下一条数据;
+                    //一直到游标对象为加
+                    cursor.continue();
+                    content.innerHTML+="<li>"+str+"</li>";
+                    console.log(arrayKey);
+                }
+            })
+        })
+
+        /*数据库创建失败*/
+        openRequest.addEventListener('error',function(evt){
+            console.log(evt+"数据创建失败");
+        })
+        /*点击添加按钮*/
+        document.querySelector("#add").addEventListener("click",function(){
+            //alert(33);
+            var _name=document.querySelector("#name").value;
+            var _phone=document.querySelector("#phone").value;
+            var _address=document.querySelector("#address").value;
+            //console.log(name+":"+phone+":"+address);
+            var member=[{name:_name,phone:_phone,address:_address}];
+            //console.log(member);
+            /*transaction:事务对象：操作表
+            * transaction([要操作的表名],设置表的属性('readwrite':可读写))
+            * */
+            //console.log(db);
+            //创建表
+            var transaction=db.transaction(['member'],'readwrite');
+            //console.log(transaction);
+            /*找到member表*/
+            var objectStore=transaction.objectStore("member");
+            //console.log(objectStore);
+            objectStore.add(member);
+            /*location.reload();*/
+            //console.log(objectStore.openCursor());
+            /*游标对象如果正常加载的话*/
+            objectStore.openCursor().addEventListener("success",function(evt){
+                //获取游标对象,用于数据查询
+                cursor=evt.target.result;
+                var key;
+                if(lastCursor==null){
+                    key=cursor.key;
+                    lastCursor=key;
+                }else{
+                    key=++lastCursor;
+                }
+                //把key追加到arrayKey数组中;
+                arrayKey.push(key);
+                console.log(arrayKey);
+                location.reload();
+            })
+        })
+        /*点击删除*/
+        document.querySelector("#delete").addEventListener("click",function(){
+            if(arrayKey.length==0){
+                console.log("没有数据");
+            }else{
+                //console.log("有数据");
+                var transction=db.transaction(['member'],'readwrite');
+                var objectStore=transction.objectStore("member");
+                var removekey=arrayKey.shift();
+                //console.log(removekey);
+                //表对象根据key获取存储的数据
+                var getRequest=objectStore.get(removekey);
+                //表对象根据key删除对应的数据;
+                var request=objectStore.delete(removekey);
+                /*删除成功后，刷新页面*/
+                request.addEventListener("success",function(){
+                    location.reload();
+                })
+            }
+        })
+    }
+    /*window.addEventListener("load",function(){console.log(document.querySelector("img"));});*/
+    window.addEventListener("DOMContentLoaded",init());
+</script>
+<img src="1.jpg">
+</body>
+</html>

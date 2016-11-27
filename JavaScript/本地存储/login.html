@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .UIA ul li{
+            display:inline-block;
+        }
+        .UIB{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<div class="UIA">
+    <ul>
+        <li>登录</li>
+        <li>注册</li>
+    </ul>
+    <input id="username"><br>
+    <button id="submitBtn">提交</button>
+</div>
+<div class="UIB">
+    <span id="member">ddd</span><br>
+    <a href="member.html" target="_blank">会员中心</a>
+</div>
+<script>
+    var UIA=document.querySelector(".UIA");
+    var UIB=document.querySelector(".UIB");
+    var member=document.querySelector("#member");
+    var username=document.querySelector("#username");
+    var submitBtn=document.querySelector("#submitBtn");
+    //为按钮添加click事件,点击登录
+    submitBtn.addEventListener("click",function(){
+        //alert(username.value);
+        //用户名的长度不等于0时
+        if(username.value.length!=0){
+            //登录成功
+            sessionStorage.setItem('username',username.value);
+            UIA.style.display="none";
+            UIB.style.display="block";
+            //把用户名写入span标签
+            member.innerHTML=username.value+"<a href='javascript:logout();'>注销</a>";
+            ///console.log(UIA.style);
+        }else{
+            alert("用户名不得为空");
+        }
+    })
+    /*页面加载后*/
+    if(sessionStorage.getItem('username')){
+        UIA.style.display="none";
+        UIB.style.display="block";
+        member.innerHTML=sessionStorage.getItem('username')+"<a href='javascript:logout();'>注销</a>";
+    }else{
+        UIA.style.display="block";
+        UIB.style.display="none";
+    }
+    console.log(new Date().toLocaleTimeString());
+    /*注销登录*/
+    function logout(){
+        sessionStorage.removeItem("username");
+        UIA.style.display="block";
+        UIB.style.display="none";
+        member.innerHTML="";
+        //location.reload();
+    }
+    console.log(sessionStorage);
+</script>
+</body>
+</html>

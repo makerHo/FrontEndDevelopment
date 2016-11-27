@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    /*创建数据库函数*/
+    function openDB(_name,version){
+        var version=version||1;
+        var request=window.indexedDB.open(_name,version);
+        /*错误事件*/
+        request.addEventListener("error",function(e){
+            console.log("链接数据库错误");
+        })
+        /*e.target.result:指的是当前的数据库*/
+        request.addEventListener("success",function(e){
+            myDB.db= e.target.result;
+            console.log(myDB.db);
+        })
+        /*版本更新事件*/
+        request.addEventListener("upgradeneeded",function(){
+            console.log("版本更新为："+version);
+        })
+    }
+    var myDB={
+        name:'demo',
+        version:123,
+        db:'onlyit'
+    }
+    openDB(myDB.name,myDB.version);
+</script>
+</body>
+</html>

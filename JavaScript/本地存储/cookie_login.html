@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="Tools.js"></script>
+</head>
+<body>
+<div class="UIA">
+    <input type="text" id="username"><br>
+    <input type="radio" id="choice">一周内不用登陆<br>
+    <button id="submitBtn">提交</button><br>
+</div>
+<div class="UIB">
+
+</div>
+<script>
+    /*
+    * 如果选择一周内不用登陆，一周内直接显示用户信息，不用登陆
+    * 如果不选择一周内不用登陆，下次需要登陆
+    * */
+    var UIA=document.querySelector(".UIA");
+    var UIB=document.querySelector(".UIB");
+    var submitBtn=document.querySelector("#submitBtn");
+    var choice=document.querySelector("#choice");
+    var username=document.querySelector("#username");
+    submitBtn.addEventListener("click",function(){
+        //alert(choice.checked);
+        if(choice.checked){
+            var d=new Date();
+            //设置一个终止日期
+            d.setDate(d.getDate()+7);
+            //console.log(d);
+            setCookie("username",username.value,d);
+        }else{
+            //alert(333);
+            setCookie("username",username.value);
+        }
+    })
+    if(getCookie('username')){
+        console.log("有效");
+        //alert(444);
+        UIA.style.display="none";
+        UIB.innerHTML=getCookie('username')+"aaa";
+    }else{
+        console.log("无效");
+        UIA.style.display="display";
+    }
+</script>
+</body>
+</html>

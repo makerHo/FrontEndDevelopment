@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="status">消息</div>
+<input type="text" id="username"><br>
+<button id="submitBtn">提交</button>
+<hr>
+<div id="content"></div>
+<script>
+    var username=document.querySelector("#username");
+    var submitBtn=document.querySelector("#submitBtn");
+    var content=document.querySelector("#content");
+    /*创建数据库*/
+    var db=openDatabase("onlyit",'2.0','demo',1024*1024,function(){
+        console.log("数据库创建成功");
+    })
+    /*点击添加数据*/
+    var index=new Date().getTime();
+    submitBtn.addEventListener("click",function(){
+        db.transaction(function(tx){
+            //console.log(tx);
+            /*执行sql语句
+            * 如果表不存在就创建
+            * sqllite:轻型的sql语句;
+            * */
+            tx.executeSql("create table if not exists member(id,username varchar(20))");
+            tx.executeSql("insert into member(id,username)values("+index+",'"+username.value+"')");
+        });
+    })
+    /*页面加载后执行*/
+    db.transaction(function(tx){
+        tx.executeSql('select * from member',[],function(tx,results){
+            var len=results.rows.length;
+            //console.log(len);
+            console.log(results.rows);
+            console.log(results.rows.item(1));
+            var str="<ul>";
+            //把结果集中的数据循环着赋给str
+            for(var i=0;i<len;i++){
+                str+="<li onclick='updateDB(this.dataset.id)' data-id='"+results.rows.item(i).id+"'>"+results.rows.item(i).username+"</li>"
+            }
+            str+="</ul>";
+            //把str赋给content
+            content.innerHTML=str;
+        });
+    });
+    function updateDB(id){
+        var username=prompt("","请输入用户名");
+        id=parseInt(id);
+        db.transaction(function(tx){
+            tx.executeSql("update member set username=? where id=?",[username,id],function(tx,results){
+                console.log("修改成功");
+            },function(tx,error){
+                console.log("修改失败");
+            });
+        });
+    }
+    /*删除数据*/
+    function deleteDB(id){
+        id=parseInt(id);
+        db.transaction(function(tx){
+            tx.executeSql("delete from member where id=?",[id],function(tx,results){
+                console.log("删除成功");
+            },function(tx,error){
+                console.log("删除失败");
+            });
+        })
+        //alert(33);
+    }
+</script>
+</body>
+</html>

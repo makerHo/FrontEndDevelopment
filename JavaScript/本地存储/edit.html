@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<ul contenteditable="true" id="content">
+    <li>tom</li>
+</ul>
+<script>
+    /*ul失去焦点事件*/
+    document.querySelector("#content").addEventListener("blur",function(){
+        //失去焦点后，把修改过的值存到localStorage中
+        localStorage.setItem('content',this.innerHTML)
+        //alert(this.innerHTML);
+    })
+    if(localStorage.getItem("content")){
+        //console.log(localStorage.getItem("content"));
+        document.querySelector("#content").innerHTML=localStorage.getItem("content");
+    }else{
+        console.log("没有本地存储");
+    }
+</script>
+</body>
+</html>

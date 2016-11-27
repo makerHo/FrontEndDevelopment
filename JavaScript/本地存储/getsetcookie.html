@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    setCookie('bookNumId',"8234234234234");
+    document.write(getCookie("bookNumId"));
+    /*设置cookie*/
+    function setCookie(_name,_value,expires,path,domain,secure){
+        //"key=value;expires=时间;path=路径;domain=主机名;secure"
+        var cookieText=encodeURI(_name)+"="+encodeURI(_value);
+        /*如果expires是时间对象的实例的话*/
+        if(expires instanceof Date){
+            cookieText+=";expires="+expires;
+        }
+        if(path){
+            cookieText+=";path="+path;
+        }
+        if(domain){
+            cookieText+=";domain="+domain
+        }
+        if(secure){
+            cookieText+=";secure";
+        }
+        document.cookie=cookieText;
+        //alert(cookieText);
+    }
+    /*获取cookie的值*/
+    function getCookie(_name){
+        var cookieName=encodeURI(_name)+"=";
+        //username=peter;expires=2016-75-5
+        var cookieStart=document.cookie.indexOf(cookieName);
+        var cookieValue=null;
+        //alert(cookieStart);
+        var cookieEnd=document.cookie.indexOf(';',cookieStart);
+        if(cookieEnd==-1){
+            cookieEnd=document.cookie.length;
+        }
+        if(cookieStart!=-1){
+            alert(document.cookie);
+            alert(cookieStart+cookieName.length+":::"+cookieEnd);
+            cookieValue=document.cookie.substring(cookieStart+cookieName.length,cookieEnd);
+        }
+        //alert(cookieValue);
+        return cookieValue;
+    }
+</script>
+</body>
+</html>

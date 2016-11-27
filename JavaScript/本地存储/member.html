@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    if(sessionStorage.getItem('username')){
+        document.write(sessionStorage.getItem('username')+"<a href='javascript:logout();'>注销</a>");
+    }else{
+        document.write("<a href='login.html'>请登录</a>");
+    }
+    function logout(){
+        sessionStorage.removeItem("username");
+        location.href="login.html";
+        //location.reload();
+    }
+</script>
+</body>
+</html>
