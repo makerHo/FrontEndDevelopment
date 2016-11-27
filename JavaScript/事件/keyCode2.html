@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        img{
+            position:absolute;
+            left:0;
+        }
+        @keyframes move {
+            0%{
+                left:0;
+            }
+            100%{
+                transform: scale(0) rotate(720deg);
+                left:800px;
+            }
+        }
+        .move{
+            animation: move 2s ease forwards;
+        }
+    </style>
+</head>
+<body>
+<img src="1.jpg" class="demo">
+<hr>
+<script>
+    var username=document.querySelector("#username");
+    var demo=document.querySelector(".demo");
+    document.body.addEventListener("keyup",function(evt){
+        //console.log(evt.keyCode);
+        /*e键*/
+        if(evt.keyCode==69){
+            demo.className="move";
+        }
+    })
+</script>
+</body>
+</html>

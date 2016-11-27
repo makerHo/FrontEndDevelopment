@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="feedback"></div>
+<hr>
+<form action="reg.php" method="post">
+    <input type="text" id="username"><br>
+    <input type="submit" value="提交" id="submitBtn">
+</form>
+<script>
+    /*表单验证
+    * 当不符合验证条件出现时，不能提交表单
+    * */
+    var username=document.querySelector("#username");
+    var submitBtn=document.querySelector("#submitBtn");
+    var feedback=document.querySelector("#feedback");
+    submitBtn.addEventListener('click',function(evt){
+        //alert(3)
+        if(username.value.length==0){
+            evt.preventDefault();
+            feedback.innerHTML="用户名不得为空";
+        }
+    })
+</script>
+</body>
+</html>

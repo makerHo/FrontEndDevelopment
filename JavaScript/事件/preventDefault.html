@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .ad{
+            display:none;
+        }
+    </style>
+</head>
+<body>
+<img src="4.jpg" class="ad">
+<a href="ad.html" class="demo">百度</a>
+<script>
+    /*增强用户体验，考虑js被禁止的情况。
+    * js开启，a的跳转被禁止，在当页显示效果。
+    * js禁止，a的跳转可以起作用，会跳转到要显示的内容
+    * */
+    var demo=document.querySelector(".demo");
+    var ad=document.querySelector(".ad");
+    demo.addEventListener("click",function(evt){
+        //alert(3);
+        //阻止锚点的跳转
+        evt.preventDefault();
+        ad.style.display="block";
+    })
+</script>
+</body>
+</html>
