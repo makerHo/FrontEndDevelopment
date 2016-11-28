@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width">
+    <link href="js/jquery.mobile-1.4.5.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile-1.4.5.js"></script>
+</head>
+<body>
+<!--页面一-->
+<div data-role="page" id="pageone">
+    <div data-role="header">
+        <h1>页面一</h1>
+    </div>
+    <div data-role="content">
+        <p>one</p>
+        <a href="#pagetwo">跳转到页二</a>
+    </div>
+    <div data-role="footer">
+        <h1>footer</h1>
+    </div>
+</div>
+<!--页面二-->
+<div data-role="page" id="pagetwo">
+    <div data-role="header">
+        <h1>页面二</h1>
+    </div>
+    <div data-role="content">
+        <p>two</p>
+        <a href="#pageone">跳转到页一</a>
+    </div>
+    <div data-role="footer">
+        <h1>footer</h1>
+    </div>
+</div>
+</body>
+</html>

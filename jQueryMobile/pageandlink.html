@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width">
+    <link href="js/jquery.mobile-1.4.5.css" rel="stylesheet">
+    <script src="js/jquery.js"></script>
+    <script src="js/jquery.mobile-1.4.5.js"></script>
+</head>
+<body>
+<div data-role="page">
+    <div data-role="header" data-position="fixed">
+        <h1>header</h1>
+    </div>
+    <div data-role="content">
+        <ul data-role="listview" data-inset="true">
+            <li><a href="#">未读信息<span class="ui-li-count">50</span></a></li>
+        </ul>
+        <!--<ul data-role="listview" data-inset="true">
+            <li data-role="divider">测试</li>
+            <li>
+                <a href="#">
+                    <img src="icon.png" class="ui-li-icon">
+                    <h2>demo</h2>
+                    <p>欲穷千里目，更上一层路</p>
+                </a>
+                <a href="#download" data-rel="dialog" data-transition="pop"></a>
+            </li>
+        </ul>-->
+    </div>
+    <div data-role="footer" data-position="fixed">
+        <h1>footer</h1>
+    </div>
+</div>
+<div data-role="page" id="download">
+    <div data-role="content">
+        <h3>3333</h3>
+        <p>对列表想的首字母转化为大小并创建分隔符</p>
+        <a
+            href="#"
+            data-role="button"
+            data-rel="back"
+            data-icon="back"
+            data-inline="true"
+            data-mini="true"
+        >Back</a>
+    </div>
+</div>
+</body>
+</html>

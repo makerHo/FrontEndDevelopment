@@ -1,0 +1,107 @@
+移动框架,针对移动设备的框架，
+两个内容：CSS,JS
+jquery mobile|ionic(angularJS)
+
+布局
+1.data-role:page一个页面
+data-role:header页面的头
+data-role:content页面的内容
+data-role:footer页尾
+
+target选择器
+<div id='pagetwo'></div>
+<a href="#pagetwo">hello</a>
+
+pagetwo以对话框的形式显示
+<a href="#pagetwo" data-rel="dialog">转到页面二</a>
+
+页面之间的过渡
+data-transition="flip"翻转
+data-transition="slidedown"下划
+data-transition="slideup"上划
+data-transition="fade"渐隐
+data-transition="pop"以弹出窗口的形式显示
+
+按钮，可以加在a、button，input type=button
+data-role="button"
+
+data-inline:把块级元素转化为行内元素
+
+data-type="horizontal":水平排列
+<div data-role="controlgroup" data-type="horizontal">
+            <a data-role="button">按钮</a>
+            <a data-role="button">按钮</a>
+            <a data-role="button">按钮</a>
+</div>
+调用图标按钮
+data-icon="search"
+图标位置
+data-iconpos="right",left top,bottom.notext
+
+
+css3布局 flex|| grid
+
+ui-grid-a:2列
+ui-grid-b:3列
+ui-grid-c:4列
+ui-grid-d:5列
+ui-grid-a:
+子元素是float：left，
+宽度：50%，
+
+data-autodividers:对列表想的首字母转化为大小并创建分隔符。
+data-rel="dialog"打开一个对话框
+data-rel="back" 返回
+
+
+jquery mobile：css,js,
+几乎是最早的移动框架，
+
+zepto||ionic:css.js,iconfont,封装：andriod，ios，
+
+Material Design:css，js，字体图标
+
+
+
+css的预编译,先用脚本的形式编辑css语言，最后再编译为css文件。
+
+demo.less
+less文件可以编译为css
+
+变量
+声明变量:@变量名
+
+函数
+/*函数*/
+@radius:12px:默认值
+.corner(@radius:12px){
+    border-radius:@radius;
+    -webkit-border-radius: @radius;
+    -moz-border-radius:@radius ;
+    -o-border-radius:@radius ;
+    -ms-border-radius:@radius;
+}
+/*调用函数时的新值*/
+#content{
+.corner(@radius:55px);
+}
+微格式：通过类名称
+<h1 class="myArticleColor"></h1>
+嵌套:在｛｝中可以继续执行继承。
+nav{
+    li{
+        a{
+            color:green;
+            &:hover{
+                background:purple;
+            }
+        }
+    }
+}
+变量的运算
+@size:5px;
+.title_color{
+    .myArticleColor;
+    font-size:@size*25;
+}
+

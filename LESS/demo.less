@@ -1,0 +1,48 @@
+/*声明变量:@变量名*/
+@a:navy;
+.demo{
+    color:@a;
+}
+#content{
+    width:150px;
+    height:150px;
+    border:1px solid green;
+    /*调用函数corner，执行了默认值;*/
+    .corner();
+}
+
+
+/*嵌套*/
+nav{
+    li{
+        a{
+            color:green;
+            &:hover{
+                background:purple;
+            }
+        }
+    }
+}
+.myArticleColor{
+    color:navy;
+}
+@size:5px;
+.title_color{
+    .myArticleColor;
+    font-size:@size*25;
+
+}
+.foo{
+    width:150px;
+    height:150px;
+    border:1px solid navy;
+    .corner(@radius:35px);
+}
+/*函数*/
+.corner(@radius:12px){
+    border-radius:@radius;
+    -webkit-border-radius: @radius;
+    -moz-border-radius:@radius ;
+    -o-border-radius:@radius ;
+    -ms-border-radius:@radius;
+}
