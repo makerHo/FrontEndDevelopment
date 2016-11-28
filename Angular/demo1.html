@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    <button ng-click="show=true">显示</button>
+    <dialog title="hello {{username}}"
+        visible="{{show}}"
+        on-cancel="show=false"
+        on-ok="show=false;methodInparsentScope();">
+        {{username}},{{title}}
+    </dialog>
+    <ul>
+        <li ng-repeat="name in names">{{name}}</li>
+    </ul>
+    <script>
+        var app=angular.module("myApp",[]);
+        app.controller("demo",function($scope){
+            $scope.names=['tom','peter','mary'];
+            $scope.show=false;
+            $scope.username='amanda';
+            $scope.title="父标题"
+            $scope.methodInparsentScope=function(){
+                alert("父作用域");
+            }
+        });
+        app.directive('dialog',function(){
+            return{
+                'restrict':'AE',
+                'templateUrl':"foo.html",
+                'replace':false,
+                'transclude':true,
+                'scope':{
+                    //插入到模板中的数据元素的title
+                    //@调用父作用域中的元素的title
+                    /*title可以理解为子元素的变量*/
+                    title:'@',
+                    visible:"@",
+                    /*&调用父作用域的方法*/
+                    ok:"&onOk",
+                    cancel:"&onCancel"
+                }
+            }
+        });
+    </script>
+</div>
+</body>
+</html>

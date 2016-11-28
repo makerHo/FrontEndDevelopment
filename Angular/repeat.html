@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    <h1 ng-repeat="i in member">
+        {{$index}}====={{i}}<br>
+    </h1>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("demo",function($scope){
+        $scope.member=['tom','peter','mary'];
+    });
+    /*var member=new Array("tom",'peter',"mary");
+    for(i in member){
+        //let num=5;
+       document.write(member[i]+"<br>");
+    }
+    document.write("<hr>");
+    for(i of member){
+        document.write(i+"<br>");
+    }*/
+    /*for(var i=10;i<15;i++){
+        document.write(i+"<br>");
+    }
+    member.forEach(function(_value,_index,_arr){
+        document.write(_value+"---"+_index+_arr+"<br>");
+    });*/
+</script>
+</body>
+</html>

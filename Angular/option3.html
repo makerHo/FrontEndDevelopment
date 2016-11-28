@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    <select  ng-model='selectedName' ng-options="y for (x,y) in member">
+        <option value="">出生年月</option>
+    </select>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("demo",function($scope){
+        //$scope.member=['tom','peter','mary'];
+        $scope.member={
+            'levelOne':"tom",
+            'levelTwo':"mary",
+            'levelThree':"Jack"
+        }
+    });
+</script>
+</body>
+</html>

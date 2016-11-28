@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<!--过滤-->
+<div ng-controller="demo">
+    <h1>{{question.newTitle}}</h1>
+    题目：<input type="text" ng-model="question.name"><br>
+    分数：<input type="text" ng-model="question.fraction"><br>
+    选项：<button ng-click="addOption()">添加</button>
+    <ul>
+        <li ng-repeat="val in question.options">
+            {{$index}}
+            <input type="text" ng-model="val.content" value="val.content">
+            <a href="#" ng-click="deleteOption($index)">&times;</a>
+        </li>
+    </ul>
+    <hr>
+    <div>
+        <h1>{{question.previewTitle}}</h1>
+        <b>{{question.name}}/{{question.fraction}}</b>
+        <ul>
+            <li ng-repeat="i in question.options">
+                {{$index}}
+                <input type="radio" name="choice">
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("demo",function($scope){
+        $scope.question={
+            newTitle:"新建试题",
+            previewTitle:"试题预览",
+            name:"",
+            fraction:"",
+            options:[]
+        }
+        /*addOption:添加方法*/
+        $scope.addOption=function(){
+            var val={content:""};
+            //把对象val追加到数组options中;
+            /*options:[{},{},{}]*/
+            $scope.question.options.push(val);
+            //console.log($scope.question);
+        }
+        $scope.deleteOption=function(_index){
+            console.log(_index);
+            $scope.question.options.splice(_index,1);
+        }
+    });
+</script>
+</body>
+</html>

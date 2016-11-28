@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+    <style>
+        .active{
+            background:red;
+        }
+        .inactive{
+            background:green;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="demo">
+    <input type="text"
+           ng-focus="focus()"
+           ng-blur="blur()"
+           ng-class="{true:'active',false:'inactive'}[isActive]">
+</div>
+<script>
+    angular.module("myApp",[]).controller("demo",function($scope){
+        $scope.blur=function(){
+            $scope.isActive=true;
+        }
+        $scope.focus=function(){
+            $scope.isActive=false;
+        }
+    });
+</script>
+</body>
+</html>

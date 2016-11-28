@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    <input type="text" ng-model="color" placeholder="color">
+    <msg color-attr="{{color}}"></msg>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller('demo',function(){});
+    app.directive("msg",function(){
+        return{
+            scope:{color:'@colorAttr'},
+            /*Attribute,element*/
+            restrict:"AE",
+            replace:true,
+            template:"<p style='color:{{color}}'>白日依山尽</p>"
+        }
+    });
+</script>
+</body>
+</html>

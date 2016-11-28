@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-init="username='tom'">
+    外部的值:{{username}}
+    <div ng-controller="demo">
+        内部的值:{{username}}
+        <div ng-controller="demo2">
+            内部的值:{{username}}
+        </div>
+    </div>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller('demo',function($scope){
+        $scope.username="peter";
+    });
+    app.controller('demo2',function($scope){
+        $scope.username="mary";
+    });
+</script>
+</body>
+</html>

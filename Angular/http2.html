@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    <div>{{content}}</div>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("demo",function($scope,$http){
+        $http.get("demo.txt").then(function(response){
+            console.log(response);
+            console.log(response.data);
+        })
+    });
+</script>
+</body>
+</html>

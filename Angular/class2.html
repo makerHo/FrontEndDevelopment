@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+    <style>
+        .active{
+            background:red;
+        }
+        .inactive{
+            background:green;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="demo">
+        <input ng-class="{true:'active',false:'inactive'}[isActive]">
+    </div>
+<script>
+    var app=angular.module('myApp',[]);
+    app.controller("demo",function($scope){
+        $scope.isActive=false;
+        //console.log(this);
+    });
+</script>
+</body>
+</html>

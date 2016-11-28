@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    {{username}}
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    /*$scope被称为angular的服务*/
+    app.controller("demo",function($scope,$location,$interval){
+        //console.log($timeout);
+        $interval(function(){
+            alert(33);
+        },2000);
+        //console.log($location);
+        //absUrl:完整的URL；
+        //console.log("abs:"+$location.absUrl());
+        //console.log($location.port());
+        //console.log($location.host());
+        //console.log($location.search("action=abc"));
+        //console.log($location.url("foo/demo"));
+        //console.log($location);
+    });
+</script>
+</body>
+</html>

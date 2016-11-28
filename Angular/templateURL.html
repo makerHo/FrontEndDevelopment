@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+    <style>
+        .active{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="demo">
+        <msg></msg>
+    </div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("demo",function(){});
+    app.directive('msg',function(){
+        return{
+            'restrict':'AE',
+            'template':"<h1>morning</h1>",
+            'link':function(scope,element,attrs){
+                //console.log(attrs);
+                element.children("h1").addClass("active");
+            }
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+    <style>
+        .container{
+            height:100%;
+        }
+        div>div{
+            width:100px;
+            height:100px;
+            border:1px solid green;
+            text-align:center;
+        }
+    </style>
+</head>
+<body ng-controller="demo">
+<div class="container">
+    <div my-draggable>Tom</div>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("demo",function(){});
+    app.directive("myDraggable",function($document){
+        return{
+            'restrict':'EA',
+            'link':function(scope,element,attrs){
+                //console.log(element[0].offsetWidth);
+                //元素的尺寸
+                scope.eleWidth=element[0].offsetWidth;
+                scope.eleHeight=element[0].offsetHeight;
+                console.log($document);
+                //窗口的尺寸
+                scope.screenWidth=window.innerWidth;
+                scope.screenHeight=window.innerHeight;
+                var myCSS={
+                    position:'absolute',
+                    zIndex:100,
+                    left:(scope.screenWidth-scope.eleWidth)/2+"px",
+                    top:(scope.screenHeight-scope.eleHeight)/2+"px"
+                };
+                /*jquery css方法*/
+                element.css(myCSS);
+                /*evt:事件对象*/
+                element.bind('mousedown',function(evt){
+                    //console.log(evt);
+                    //阻止默认动作
+                    evt.preventDefault();
+                    //console.log(scope.eleWidth);
+                    //元素到边的值
+                    var initX=element[0].offsetLeft;
+                    var initY=element[0].offsetTop;
+                    var mouseX=evt.pageX;
+                    var mouseY=evt.pageY;
+                    //console.log(mouseY);
+                    function move(evt){
+                        var ox=evt.pageX-mouseX;
+                        var oy=evt.pageY-mouseY;
+                        var endLeft=initX+ox;
+                        var endTop=initY+oy;
+                        endLeft=(endLeft>=0&&endLeft<scope.screenWidth-scope.eleWidth)?endLeft:(endLeft<0?0:scope.screenWidth-scope.eleWidth);
+                        endTop=(endTop>=0&&endTop<scope.screenHeight-scope.eleHeight)?endTop:(endTop<0?0:scope.screenHeight-scope.eleHeight);
+                        //console.log(endLeft);
+                        element.css({
+                            "left":endLeft+"px",
+                            'top':endTop+"px"
+                        });
+                    }
+                    $document.bind("mousemove",move);
+                    $document.bind("mouseup",function(evt){
+                        $document.unbind("mousemove",move);
+                    })
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>

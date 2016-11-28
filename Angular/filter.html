@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    {{member.username}}<br>
+    {{member.username|reverse}}<br>
+    {{member.username|reverse:true}}<br>
+    <!--<ul ng-repeat="i in names |orderBy:name">
+        <li>{{i.name}}</li>
+    </ul>-->
+    <input type="text" ng-model="money"><br>
+    <h3>{{money|currency}}</h3>
+    <h1>{{member.username|uppercase}}</h1>
+    <h1>{{member.gender|lowercase}}</h1>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller('demo',function($scope){
+        $scope.member={
+            "username":"kong",
+            "gender":"MALE"
+        };
+        $scope.names=[{
+            'name':'a'
+        },{
+            'name':'b'
+        },{
+            'name':'c'
+        }]
+    });
+    /*创建自定义过滤器reverse*/
+    app.filter('reverse',function(){
+        //input：传进来的值
+        return function(input,uppercase){
+            //空字符串out；
+            var out="";
+            /*通过循环把字符串倒序*/
+            for(var i=0;i<input.length;i++){
+                out=input.charAt(i)+out;
+            }
+            /*把字符串转换为大写*/
+            if(uppercase){
+                //toUpperCase():转换为大写;
+                out=out.toUpperCase();
+            }
+            return out;
+        }
+    });
+</script>
+</body>
+</html>

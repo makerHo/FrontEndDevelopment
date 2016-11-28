@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+    <style>
+        .even{
+            background:red;
+        }
+        .odd{
+            background:green;
+        }
+    </style>
+</head>
+<body>
+<table width="100%" border="1" align="center" ng-controller="demo">
+    <tr ng-repeat="i in books" ng-class-even="'odd'" ng-class-odd="'even'">
+        <td>{{i.book_name}}</td>
+        <td>{{i.book_price}}</td>
+    </tr>
+</table>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("demo",function($scope){
+        $scope.books=[
+            {
+                'book_name':'JavaScript',
+                'book_price':35
+            },{
+                'book_name':'HTML',
+                'book_price':25
+            },{
+                'book_name':'PHP',
+                'book_price':135
+            }
+        ];
+    });
+
+</script>
+</body>
+</html>

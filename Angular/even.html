@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<style>
+    .hello{
+        background:red;
+    }
+</style>
+<div ng-controller="demo">
+    <table border="1" width="100%" align="center">
+        <tr ng-class-even="'hello'"><td>one</td><td>one</td><td>one</td></tr>
+        <tr><td>one</td><td>one</td><td>one</td></tr>
+        <tr><td>one</td><td>one</td><td>one</td></tr>
+    </table>
+</div>
+<script>
+    angular.module("myApp",[]).controller("demo",function(){
+
+    });
+</script>
+</body>
+</html>

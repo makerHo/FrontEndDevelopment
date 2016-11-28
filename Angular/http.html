@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    <div>{{loading}}</div>
+    <ul>
+        <li ng-repeat="i in usernames">{{i.username}}</li>
+    </ul>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("demo",function($scope,$http){
+        //$scope.usernames=["tom",'peter','mary'];
+        $scope.loading='加载中...';
+        $http({
+            'type':'post',
+            'url':'getAll.php',
+        }).success(function(response){
+            $scope.loading='';
+            //console.log(response);
+            //response:[{},{}]
+            $scope.usernames=response;
+        });
+    });
+</script>
+</body>
+</html>

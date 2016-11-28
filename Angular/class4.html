@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+    <style>
+        .active{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="demo" ng-init="isSelected=true">
+    <h1 ng-class="{'active':isSelected}">hello</h1>
+</div>
+<script>
+    angular.module('myApp',[]).controller('demo',function($scope){
+        //$scope.isSelected=false;
+    });
+</script>
+</body>
+</html>

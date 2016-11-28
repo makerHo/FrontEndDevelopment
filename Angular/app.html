@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="1114/angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    <h1>{{msg}}</h1>
+</div>
+<script>
+    /*声明一个模块*/
+    var myApp=angular.module('myApp',[]);
+    //console.log(myApp);
+    myApp.controller('demo',function($scope){
+        $scope.msg="hello again!";
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo" title="{{username}}">
+    {{username|truncate_str}}
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("demo",function($scope){
+        $scope.username="williamgerogiabush";
+    });
+    /*自定义一个服务*/
+    app.service("truncate",function(){
+        this.foo=function(str){
+            if(str.length>15){
+                str=str.substring(0,15)+"..."
+            }
+            return str;
+        }
+    });
+    /*自定义过滤器*/
+    app.filter('truncate_str',function(truncate){
+        return function(data){
+            return truncate.foo(data);
+        }
+    });
+</script>
+</body>
+</html>

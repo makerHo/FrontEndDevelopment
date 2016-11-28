@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+    <style>
+        .demo{
+            background:green;
+        }
+    </style>
+</head>
+<body>
+<div ng-controller="demo">
+    <input type="text" class={{className}} >
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("demo",function($scope){
+        $scope.className="demo";
+    });
+</script>
+</body>
+</html>

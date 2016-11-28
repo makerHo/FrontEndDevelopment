@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+    <style>
+        .active{
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="demo">
+        <msg></msg>
+        <h1>hello</h1>
+    </div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("demo",function(){});
+    app.directive('msg',function(){
+        return{
+            'restrict':'AE',
+            'template':"<h1>morning</h1><p>hello</p>",
+            'link':function(scope,element,attrs){
+                //console.log(attrs);
+                /*jquery Lite：angular封装了jquery中的部分功能
+                * 如果使用全部功能必须引入jquery.js
+                * */
+                /*element.children("h1").hover(function(){
+                    element.find("h1").addClass("active").html("over");
+                },function(){
+                    element.find("h1").removeClass("active").html("out");
+                });*/
+                element.children("h1").bind("mouseover",function(){
+                    element.find("h1").addClass("active").html("over");
+                });
+                element.children("h1").bind("mouseout",function(){
+                    element.find("h1").removeClass("active").html("out");
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>

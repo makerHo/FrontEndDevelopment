@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    <input type="text" ng-model="username">
+    {{username}}
+    <msg greeting="hi()"></msg>
+</div>
+<!--
+<msg class="ng-isolate-scope" greeting="hi()">
+    <button ng-click="aaa();">button</button>
+</msg>-->
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller('demo',function($scope){
+        $scope.hi=function(){
+            alert('我是greeting的内容')
+        }
+        $scope.aaa=function(){
+            alert('我是aaa的内容')
+        }
+    });
+    /*foo:*/
+    app.directive("msg",function(){
+        return{
+            /*aaa调用的是父作用域的greeting方法*/
+            'scope':{aaa:'&greeting'},
+            'restrict':'AE',
+            'replace':false,
+            template:"<button ng-click='aaa();'>button</button>"
+        }
+    });
+</script>
+</body>
+</html>

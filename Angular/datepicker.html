@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery.js"></script>
+    <script src="jquery-ui.js"></script>
+    <link href="jquery-ui.css" rel="stylesheet">
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    <input
+            id="dateField"
+            datepicker
+            ng-model="$parent.currentDate"
+            select="updateMyText(date)"
+    >
+    <hr>
+    {{myText}}---{{currentDate}}
+</div>
+<script>
+    /*初始化myApp*/
+    var app=angular.module("myApp",['myApptwo']);
+    //初始化控制器
+    app.controller("demo",function($scope){
+        $scope.myText="请选择日期";
+        $scope.currentDate='';
+        $scope.updateMyText=function(date){
+            $scope.myText="选择的是："+date
+        }
+    });
+    /*自定义模块,自定义指令 directive('',function){return{})*/
+    angular.module('myApptwo',[]).directive('datepicker',function(){
+        return{
+            'restrict':'A',
+            'require':"?ngModel",
+            'scope':{
+                /*子元素的select调用父作用域的相同的方法名*/
+                select:"&"
+            },
+            'link':function(scope,element,attrs,ngModel){
+                var optionsObj={};
+                var updateModel=function(dateText){
+                    /*
+                    * <input type='text' ng-model='username'>
+                    *  {{username}}
+                    * */
+                    //$apply:双向数据绑定;
+                    scope.$apply(function(){
+                        /*把ng-model绑定到静态视图中*/
+                        ngModel.$setViewValue(dateText);
+                    });
+                };
+                    optionsObj.onSelect=function(dateText,picker){
+                        updateModel(dateText);
+                        if(scope.select){
+                            scope.$apply(function(){
+                                scope.select({date:dateText});
+                            });
+                        }
+                    };
+                    ngModel.$render=function(){
+                        element.datepicker('setDate',ngModel.$viewValue||'')
+                    } ;
+                console.log(optionsObj);
+                    element.datepicker(optionsObj);
+            }
+        }
+    });
+</script>
+</body>
+</html>

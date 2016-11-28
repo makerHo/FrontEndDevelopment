@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="1114/angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    <h1>{{clock}}</h1>
+</div>
+<script>
+    /*声明一个模块*/
+    var myApp=angular.module('myApp',[]);
+    //console.log(myApp);
+    myApp.controller('demo',function($scope,$timeout){
+        var updateTime=function(){
+            var d=new Date();
+            $scope.clock= d.getHours()+":"+ d.getMinutes()+":"+ d.getSeconds();
+            /*setTimeout(fn,delay)*/
+            $timeout(function(){
+                updateTime();
+            },1000);
+        }
+        updateTime();
+        //console.log($timeout);
+        //updateTime();
+    });
+</script>
+</body>
+</html>

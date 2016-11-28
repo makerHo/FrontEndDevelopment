@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    外部的值：{{username}}
+    <input ng-model="username">
+    <div my-directive></div>
+</div>
+<script>
+    /*初始化angular*/
+    var app=angular.module("myApp",[]);
+    /*初始化控制器demo*/
+    app.controller("demo",function($scope){
+        $scope.username='tom';
+    });
+    /*声明自定义指令*/
+    app.directive('myDirective',function(){
+        return{
+            'restrict':'EA',
+            'scope':{},
+            /*向自定义标签中输入数据*/
+            template:"<div>内部的值：{{username}}<input ng-model='username'></div>"
+        }
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="1114/angular.js"></script>
+</head>
+<body>
+<div ng-controller="Demo">
+    <p>{{msg.sayhi}}</p>
+</div>
+<script>
+    function Demo($scope){
+        //$scope.msg="hello world!";
+        $scope.msg={
+            'sayhi':'hello world again!'
+        }
+        console.log($scope);
+    }
+</script>
+</body>
+</html>

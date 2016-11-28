@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    <button ng-click="toggle()">按钮</button><br>
+    <img src="1.jpg" ng-hide="aaa">
+    <h1>{{msg}}</h1>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("demo",function($scope){
+        $scope.msg="foo";
+        //定义toggle方法;
+        $scope.toggle=function(){
+            //逻辑取反;
+            $scope.aaa=!$scope.aaa;
+        }
+    });
+</script>
+</body>
+</html>

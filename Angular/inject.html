@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<msg url="http://www.taobao.com">taobao</msg>
+<script>
+    var app=angular.module("myApp",[]);
+    app.directive("msg",function(){
+        return{
+            'restrict':'AE',
+            transclude:true,
+            /*注入,$transclude嵌入函数*/
+            controller:function($scope,$element,$attrs,$transclude,$log){
+                $transclude(function(clone){
+                    //console.log(clone);
+                    console.log($element);
+                    //创建a标签
+                    var a=angular.element("<a>");
+                    //为创建的a标签赋属性
+                    a.attr('href',$attrs.url);
+                    a.attr('target',"_blank");
+                    //把文本添加
+                    a.text("淘宝");
+                    //a.text(clone.text());
+                    $element.append(a);
+                });
+                /*$log:console*/
+                $log.log("hello");
+            }
+        }
+    });
+</script>
+</body>
+</html>

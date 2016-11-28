@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+    <div ng-controller="demo">
+        <msg></msg>
+    </div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("demo",function(){
+
+    })
+    app.directive("msg",function(){
+        return{
+            'restrict':'E',
+            'template':"<h2>tom</h2>"
+        }
+    })
+</script>
+</body>
+</html>

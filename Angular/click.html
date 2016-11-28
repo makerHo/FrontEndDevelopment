@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body>
+<div ng-controller="demo">
+    <button ng-click="Msg()">按钮</button>
+</div>
+<script>
+    var app=angular.module("myApp",[]);
+    app.controller("demo",function($scope){
+        //声明一个Msg()方法;
+        $scope.Msg=function(){
+            alert("hello");
+        }
+    });
+</script>
+</body>
+</html>

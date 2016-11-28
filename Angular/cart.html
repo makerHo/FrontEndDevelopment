@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="angular.js"></script>
+</head>
+<body ng-controller="cartController">
+<div ng-repeat="item in items">
+    <span>{{item.name}}</span>
+    <span>{{item.price}}元</span>
+    <span>{{item.quantity}}本</span>
+    <span>总价：{{item.price*item.quantity}}元</span>
+    <button ng-click="remove($index)">&times;</button>
+</div>
+    <script>
+        var app=angular.module("myApp",[]);
+        app.controller("cartController",function($scope){
+            $scope.items=[{
+                name:"js",
+                quantity:5,
+                price:50
+            },{
+                name:"php",
+                quantity:15,
+                price:150
+            },{
+                name:"jquery",
+                quantity:52,
+                price:520
+            }];
+            $scope.remove=function(_index){
+                $scope.items.splice(_index,1);
+            }
+        });
+    </script>
+</body>
+</html>
