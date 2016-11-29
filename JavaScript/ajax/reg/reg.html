@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<meta name="viewport" charset="width-device-width">-->
+
+    <style>
+
+        #code{
+            width:35%;
+            display:inline-block;
+        }
+        #captcha{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="feedback"></div>
+<dl>
+    <dt>注册</dt>
+    <dd>
+        <input type="text" class="form-control input-sm" id="username" placeholder="用户名">
+    </dd>
+    <dd>
+        <input type="password" class="form-control input-sm" id="pwd" placeholder="密码">
+    </dd>
+    <dd>
+        <input type="password" class="form-control input-sm" id="repwd" placeholder="密码确认">
+    </dd>
+    <dd>
+        <input type="text" class="form-control input-sm" id="email" placeholder="邮箱">
+    </dd>
+    <dd>
+        <label class="col-sm-4" for="pic">点击上传</label>
+        <input type="file" class=" input-sm" id="pic" style="display:none">
+    </dd>
+    <dd>
+        <input type="text" class="form-control input-sm" id="code" placeholder="验证码">
+        <img src="code.php" id="captcha">
+    </dd>
+    <dd>
+        <button class="btn btn-success btn-block" id="submitBtn">提 交</button>
+    </dd>
+</dl>
+<script>
+    var fd=new FormData();
+    var pic=document.querySelector("#pic");
+    var submitBtn=document.querySelector("#submitBtn");
+    var username=document.querySelector("#username");
+    var pwd=document.querySelector("#pwd");
+    var repwd=document.querySelector("#repwd");
+    var email=document.querySelector("#email");
+    var feedback=document.querySelector("#feedback");
+    var msg=document.querySelector("#msg");
+    var captcha=document.querySelector("#captcha");
+    //http://www.a.com/index.php?action=add&page=5;
+    captcha.addEventListener("click",function(){
+        this.src="code.php?num="+Math.random();
+    })
+    pic.addEventListener("change",function(){
+        //console.log(pic.files);
+        //console.log(pic.files[0]);
+        //console.log(pic.files[0].name);
+    })
+    /*点击注册*/
+    submitBtn.addEventListener("click",function(){
+        var xhr=new XMLHttpRequest();
+        if(username.value.length==0){
+            feedback.innerHTML="用户名不得为空";
+            return false;
+        }
+        if(repwd.value!=pwd.value){
+            /*feedback.style.display="block";*/
+            feedback.innerHTML="两次密码不一致";
+            /*setTimeout(function(){
+             feedback.style.display="none";
+             },2000);*/
+            return false;
+        }
+        /////////////////////////////////
+        xhr.open("post","reg.php");
+        //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        feedback.innerHTML="加载中...";
+        //传递的数据保存在fd对象中
+        fd.append("username",username.value);
+        fd.append("pwd",pwd.value);
+        fd.append("code",code.value);
+        fd.append("email",email.value);
+        //把上传文件传给formdata对象
+        fd.append("pic",pic.files[0]);
+        xhr.send(fd);
+        xhr.addEventListener('readystatechange',function(){
+            if(xhr.readyState==4){
+                if(xhr.status==200){
+                    feedback.innerHTML="";
+                    //console.log(xhr.responseText);
+                    if(xhr.responseText=="ok"){
+                        feedback.innerHTML="注册成功";
+                    }else if(xhr.responseText=="failed"){
+                        feedback.innerHTML="注册失败";
+                    }else if(xhr.responseText=="wrongCode"){
+                        feedback.innerHTML="验证码错误";
+                    }else{
+                        console.log(xhr.responseText);
+                    }
+                }
+            }
+        });
+    })
+    //console.log(fd);
+</script>
+</body>
+</html>
