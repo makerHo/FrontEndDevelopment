@@ -62,7 +62,7 @@
     </dd>
     <dd>
         <label  for="pic">上传头像</label>
-        <input type="file" id="pic" name="pic" style="display:none">
+        <input type="file" id="pic" style="display:none">
     </dd>
     <dd><img src="7.jpg" id="preview"></dd>
     <dd>
@@ -249,53 +249,33 @@
                         var fd=new FormData();
                         var xhr=new XMLHttpRequest();
                         /////////////////////////////////
-                        xhr.open("post","checkcode.php");
+                        xhr.open("post","reg.php");
                         //xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
                         feedback.innerHTML="加载中...";
                         //传递的数据保存在fd对象中
+                        fd.append("username",username.value);
+                        fd.append("pwd",pwd.value);
                         fd.append("code",code.value);
+                        fd.append("email",email.value);
+                        //把上传文件传给formdata对象
+                        fd.append("pic",pic.files[0]);
                         xhr.send(fd);
                         xhr.addEventListener('readystatechange',function(){
                             if(xhr.readyState==4){
                                 if(xhr.status==200){
                                     feedback.innerHTML="";
                                     //console.log(xhr.responseText);
-                                    if(xhr.responseText=="wrongCode"){
+                                    if(xhr.responseText=="ok"){
+                                        //feedback.innerHTML="注册成功";
+                                        /*把用户信息保存到sessionStorage*/
+                                        sessionStorage.setItem('username',username.value);
+                                        location.href="练习.html";
+                                    }else if(xhr.responseText=="failed"){
+                                        feedback.innerHTML="注册失败";
+                                    }else if(xhr.responseText=="wrongCode"){
                                         feedback.innerHTML="验证码错误";
-                                    }else if(xhr.responseText=="ok"){
-                                        var fd4=new FormData();
-                                        var xhr4=new XMLHttpRequest();
-                                        xhr4.open("post","reg.php");
-                                        feedback.innerHTML="加载中...";
-                                        //传递的数据保存在fd对象中
-                                        fd4.append("username",username.value);
-                                        fd4.append("pwd",pwd.value);
-                                        fd4.append("email",email.value);
-                                        //把上传文件传给formdata对象
-                                        fd4.append("pic",pic.files[0]);
-                                        xhr4.send(fd4);
-                                        xhr4.addEventListener('readystatechange',function(){
-                                            if(xhr4.readyState==4){
-                                                if(xhr4.status==200){
-                                                    feedback.innerHTML="";
-                                                    //console.log(xhr.responseText);
-                                                    if(xhr4.responseText=="ok"){
-                                                        feedback.innerHTML="注册成功";
-                                                        /*把用户信息保存到sessionStorage*/
-                                                        sessionStorage.setItem('username',username.value);
-                                                        location.href="练习.html";
-                                                    }else if(xhr4.responseText=="failed"){
-                                                        feedback.innerHTML="注册失败";
-                                                    }else{
-                                                        console.log(xhr4.responseText);
-                                                    }
-                                                }
-                                            }
-                                        });
-
-
                                     }else{
-                                        console.log(xhr.responseText);
+                                        alert(xhr.responseText);
                                     }
                                 }
                             }

@@ -24,7 +24,7 @@ class Transfer{
     //上传文件的类型
     private $type;
     private $maxSize=1000000;
-    private $allowType=array("png","jpg","gif");
+    private $allowType=array("png","jpg","gif",'jpeg');
     private $path="uploads";
     private $errorNum;
     private $fieldName="icon";
