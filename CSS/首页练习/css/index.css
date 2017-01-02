@@ -1,0 +1,126 @@
+.top{
+    background:url(../images/topbg.png);
+    /*height:632px;*/
+    padding:0;
+}
+.top header{
+    height:72px;
+    line-height:72px;
+    background:rgba(0,0,0,0.2);
+    position:absolute;
+    z-index:100;
+    width:100%;
+    left:0;
+    right:0;
+    margin:auto;
+}
+.logo{
+    color:#fff;
+    font-size:12pt;
+    font-family: "微软雅黑";
+}
+.navigator{
+    display:inline-block;
+}
+.navigator a{
+    color:#fff;
+    font-size:12pt;
+    font-family: "微软雅黑";
+}
+.navigator li{
+    margin-left:60px;
+}
+.login{
+    display:inline-block;
+    background:rgba(155,75,65,1);
+    margin-left:25px;
+}
+.login a{
+    color:#fff;
+    font-size:12pt;
+    font-family: "微软雅黑";
+}
+.city{
+    height:520px;
+    background:rgba(238,238,238,1);
+    margin-top:5px;
+}
+.city h1{
+    margin:0;
+    padding:0;
+    margin-top:90px;
+}
+.city .dividerLine,.sightseeing .dividerLine,.guide .dividerLine{
+    height:1px;
+    background: red;
+    width:150px;
+    margin:5px auto;
+}
+.city li,.guide li{
+    margin-top:50px;
+    text-align: center;
+    margin-left:1px;
+}
+.city li i{
+    color:red;
+    width:110px;
+    height:110px;
+    line-height:110px;
+    font-size:50px;
+    border:1px solid #fff;
+    border-radius: 110px;
+    margin-bottom:5px;
+}
+.city li span{
+    display:block;
+}
+.sightseeing{
+    height:225px;
+}
+.sightseeing h1,.guide h1{
+    margin:0;
+    padding:0;
+    margin-top:80px;
+}
+.album ul{
+    margin:0;
+    padding:0;
+}
+.aboutus{
+    height:722px;
+    background:rgba(238,238,238,1);
+}
+.guide{
+    height:560px;
+    background:rgba(238,238,238,1);
+}
+.guide li{
+    margin-left:10px;
+    margin-top:90px;
+}
+.guide li img{
+    width:100px;
+    height:100px;
+}
+.instruct{
+    height:305px;
+    background:url(../images/tour.png);
+}
+.contact{
+    height:400px;
+}
+.contact h1{
+    margin:0;
+    padding:0;
+    font-family: "微软雅黑";
+    margin-top:70px;
+    margin-bottom:30px;
+}
+.contact li{
+    margin-top:100px;
+    margin-left:100px;
+}
+.contact li span{
+    display:block;
+    margin-top:10px;
+}

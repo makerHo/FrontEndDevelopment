@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="styles/login.css" rel="stylesheet">
+</head>
+<body>
+<div class="login">
+    <div class="login_header">
+        <span>登录</span>
+    </div>
+    <div class="login_body">
+        <div class="bar"></div>
+        <ul>
+            <li class="icon"><span id="icon"></span>
+                <input type="text" id="username" placeholder="邮箱/账号"></li>
+            <li class="lock"><span id="lock"></span>
+                <input type="password" id="pwd" placeholder="密码"></li>
+            <li>
+                <input type="checkbox" id="remember" checked>
+                <label for="remember">记住密码</label>
+                <input type="checkbox" id="autologin">
+                <label for="autologin">自动登录</label>
+            </li>
+            <li id="code">
+                <input type="text" placeholder="验证码" class="code">
+                <img src="images/code.jpg" class="captcha">
+            </li>
+            <li><input type="button" value="登录" id="submitBtn"></li>
+        </ul>
+        <div class="divider"><hr size="1" color="rgba(78,76,76,1)"></div>
+    </div>
+    <div class="login_footer">
+        <div class="other"><a href="#">忘记密码</a> <a href="#">立即注册</a></div>
+        <dl>
+            <dt>合作账号登录</dt>
+            <dd><img src="images/w.png"></dd>
+            <dd><img src="images/wx.png"></dd>
+            <dd><img src="images/q.png"></dd>
+        </dl>
+    </div>
+</div>
+</body>
+</html>

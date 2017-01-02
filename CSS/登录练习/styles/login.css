@@ -1,0 +1,182 @@
+body{
+    background-image:url(../images/bg.jpg);
+    height:1000px;
+    width:100%;
+    background-repeat:no-repeat;
+    background-origin: border-box;
+    -webkit-background-size:cover;
+}
+.login{
+    width:706px;
+    height:544px;
+    border:1px solid #ddd;
+    box-shadow:0 0 8px #ddd;
+    /*border-radius:8px;*/
+    background:#fff;
+    /*水平垂直居中*/
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin:auto;
+}
+.login_header{
+    height:64px;
+    /*background:lightyellow;*/
+    font-size:24pt;
+    font-family: "微软雅黑";
+    color:red;
+}
+.login_header span{
+    padding-left:5px;
+}
+.login_body{
+    /*height:480px;*/
+}
+.login_body .bar{
+    height:10px;
+    background:red;
+}
+.login ul{
+    margin:0;
+    padding:0;
+    padding-left:8px;
+    list-style: none;
+    margin-left:120px;
+    /*display:inline-block*/
+    margin-top:31px;
+    margin-right:117px;
+    /*border:1px solid blue;*/
+}
+.login ul li{
+    margin-bottom:10px;
+}
+.divider{
+    margin-left:120px;
+    margin-right:117px;
+    padding:0 8px;
+}
+#username{
+    width:457px;
+    height:52px;
+    border:2px solid black;
+    font-size:25px;
+    text-indent: 50px;
+    /*文本缩进*/
+    /*box-sizing:border-box;
+    padding-left:50px;*/
+}
+.icon,.lock{
+    position:relative;
+}
+#icon{
+    position:absolute;
+    left:1px;
+    top:2px;
+    width:49px;
+    height:54px;
+    background:url(icon.png);
+    background-size:49px 100%;
+}
+#lock{
+    position:absolute;
+    left:1px;
+    top:2px;
+    width:49px;
+    height:54px;
+    background:url(lock.png);
+    background-size:49px 100%;
+}
+#pwd{
+    border:2px solid black;
+    font-size:25px;
+    text-indent: 50px;
+    width:457px;
+    height:52px;
+}
+#remember,#autologin{
+    display:none;
+}
+#remember+label,#autologin+label{
+    margin-left:50px;
+    margin-bottom:12px;
+    display:inline-block;
+}
+#remember+label{
+    margin-right:50px;
+}
+#remember+label:before,#autologin+label:before{
+    /*background:url(check.png);*/
+    border:1px solid #ddd;
+    content:"";
+    display:inline-block;
+    width:18px;
+    height:18px;
+    margin-right:5px;
+}
+/*多选框在选择的状态下的label:before样式*/
+#remember:checked+label:before,#autologin:checked+label:before{
+    background:url(checked.png);
+    color:#fff;
+    content:"";
+}
+#submitBtn{
+    height:50px;
+    width:100%;
+    background:rgba(175,45,45,1);
+    margin-top:18px;
+    color:#fff;
+    font-size:16pt;
+    font-family: "微软雅黑";
+}
+dl,dd{
+    margin:0;
+    padding:0;
+}
+dl{
+    margin-right:117px;
+    /*border:1px solid red;*/
+}
+dl dd{
+    display:inline-block;
+    text-indent:30px;
+}
+dl dt{
+    color:rgba(131,124,124,1);
+    font-weight: bold;
+    font-family: "幼圆";
+    margin-bottom:10px;
+}
+.code{
+    width:209px;
+    height:43px;
+    border:2px solid black;
+    text-indent:25px;
+}
+#code{
+    position: relative;
+}
+.captcha{
+    position:absolute;
+    top:10px;
+}
+.login_footer{
+    /*background:red;*/
+    margin-left:120px;
+    margin-right:117px;
+}
+.other{
+    text-align:right;
+}
+.other a{
+    text-decoration:none;
+    font-family: "微软雅黑";
+    font-size:11pt;
+    font-weight:bold;
+    color:rgba(7,108,255,1);
+}
+.login_footer img{
+    width:37px;
+    height:37px;
+}
